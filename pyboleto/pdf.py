@@ -781,6 +781,7 @@ class BoletoPDF(object):
         y += d[1] + 6 * mm
         # self._drawHorizontalCorteLine(0, y, d[0])
         y += 7 * mm
+	y = 308
         if boletoDados2:
             self.drawBoletoCarne(boletoDados2, y)
 
