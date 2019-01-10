@@ -452,7 +452,7 @@ class BoletoPDF(object):
             self.width - (45 * mm) + self.space,
             y + self.space, 'Código de baixa'
         )
-        self.pdf_canvas.drawString(0, y + self.space, 'Sacador / Avalista')
+        self.pdf_canvas.drawString(0, y + self.space, 'Pagador / Avalista')
 
         y += self.height_line
         self.pdf_canvas.drawString(0, y + self.delta_title, 'Pagador')
@@ -473,7 +473,7 @@ class BoletoPDF(object):
 
         # Linha vertical limitando todos os campos da direita
         self.pdf_canvas.setLineWidth(1)
-        self.__verticalLine(self.width - (45 * mm), y, 9.5 * self.height_line)
+        self.__verticalLine(self.width - (45 * mm), y, 9 * self.height_line)
         self.pdf_canvas.drawString(
             self.width - (45 * mm) + self.space,
             y + self.delta_title,
@@ -585,9 +585,7 @@ class BoletoPDF(object):
             y + self.space,
             boleto_dados.quantidade
         )
-        valor = ''
-        if boleto_dados.valor != '0.00':
-            valor = self._formataValorParaExibir(boleto_dados.valor)
+        valor = self._formataValorParaExibir(boleto_dados.valor)
         self.pdf_canvas.drawString(
             ((30 + 20 + 20 + 20 + 20) * mm) + self.space,
             y + self.space,
@@ -678,20 +676,16 @@ class BoletoPDF(object):
         # Linha horizontal com primeiro campo Cedente
         y += self.height_line
         self.__horizontalLine(0, y, self.width)
-        self.pdf_canvas.drawString(0, y + self.delta_title + 10,
-                                   'Beneficiário')
+        self.pdf_canvas.drawString(0, y + self.delta_title, 'Beneficiário')
         self.pdf_canvas.drawString(
             self.width - (45 * mm) + self.space,
-            y + self.delta_title + 10,
-            boleto_dados.label_cedente
+            y + self.delta_title,
+            'Agência/Código Beneficiário'
         )
 
         self.pdf_canvas.setFont('Helvetica', self.font_size_value)
-        beneficiario = u'{} - CPF/CNPJ: {}'.format(
-            boleto_dados.cedente, boleto_dados.cedente_documento)
-        self.pdf_canvas.drawString(0, y + self.space + 10, beneficiario)
-        self.pdf_canvas.drawString(0, y + self.space,
-                                   boleto_dados.cedente_endereco)
+        self.pdf_canvas.drawString(0, y + self.space, boleto_dados.cedente)
+        
         self.pdf_canvas.drawRightString(
             self.width - 2 * self.space,
             y + self.space,
@@ -700,7 +694,7 @@ class BoletoPDF(object):
         self.pdf_canvas.setFont('Helvetica', self.font_size_title)
 
         # Linha horizontal com primeiro campo Local de Pagamento
-        y += self.height_line + 10
+        y += self.height_line
         self.__horizontalLine(0, y, self.width)
         self.pdf_canvas.drawString(
             0,
@@ -781,7 +775,7 @@ class BoletoPDF(object):
         y += d[1] + 6 * mm
         # self._drawHorizontalCorteLine(0, y, d[0])
         y += 7 * mm
-	y = 308
+        y = 308
         if boletoDados2:
             self.drawBoletoCarne(boletoDados2, y)
 
