@@ -452,7 +452,7 @@ class BoletoPDF(object):
             self.width - (45 * mm) + self.space,
             y + self.space, 'Código de baixa'
         )
-        self.pdf_canvas.drawString(0, y + self.space, 'Pagador / Avalista madagascar')
+        self.pdf_canvas.drawString(0, y + self.space, 'Pagador / Avalista')
 
         y += self.height_line
         self.pdf_canvas.drawString(0, y + self.delta_title, 'Pagador')
