@@ -458,7 +458,7 @@ class BoletoPDF(object):
         self.pdf_canvas.drawString(0, y + self.delta_title, 'Pagador')
         sacado = boleto_dados.sacado
 
-        # Linha grossa dividindo o Sacado
+        # Linha grossa dividindo o Sacado 
         y += self.height_line
         self.pdf_canvas.setLineWidth(2)
         self.__horizontalLine(0, y, self.width)
