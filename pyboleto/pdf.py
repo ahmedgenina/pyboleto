@@ -313,7 +313,7 @@ class BoletoPDF(object):
             0,
             (((linha_inicial + 0) * self.height_line - 3 * cm)) +
             self.delta_title,
-            'Demonstrativo'
+            "Demonstrativo"
         )
 
         # Values
@@ -452,7 +452,7 @@ class BoletoPDF(object):
             self.width - (45 * mm) + self.space,
             y + self.space, 'Código de baixa'
         )
-        self.pdf_canvas.drawString(0, y + self.space, 'Pagador / Avalista')
+        self.pdf_canvas.drawString(0, y + self.space, 'Pagador / Avalista madagascar')
 
         y += self.height_line
         self.pdf_canvas.drawString(0, y + self.delta_title, 'Pagador')
@@ -684,7 +684,7 @@ class BoletoPDF(object):
         )
 
         self.pdf_canvas.setFont('Helvetica', self.font_size_value)
-        self.pdf_canvas.drawString(0, y + self.space, boleto_dados.cedente)
+        self.pdf_canvas.drawString(0, y + self.space,boleto_dados.cedente + " - CPF/CNPJ: " + boleto_dados.cedente_documento)
         
         self.pdf_canvas.drawRightString(
             self.width - 2 * self.space,
